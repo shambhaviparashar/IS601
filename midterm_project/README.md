@@ -16,9 +16,7 @@ The script is designed as part of the Midterm Project for IS601, and aims to hel
 midterm_project/
 │
 ├── midterm_project.py       # Python script that processes the orders
-├── example_orders.json      # Sample input file with restaurant orders for testing
-├── customers.json           # Output file containing customer phone numbers and names
-└── items.json               # Output file containing item names, prices, and order counts
+└── example_orders.json      # Sample input file with restaurant orders for testing
 ```
 
 ---

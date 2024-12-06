@@ -67,7 +67,7 @@ pip install fastapi uvicorn python-multipart
 
 2. Start the FastAPI server:
    ```bash
-   uvicorn api:app --reload
+   uvicorn main:app --reload
    ```
    - The server will run at `http://127.0.0.1:8000`.
    - Swagger documentation for the API is available at `http://127.0.0.1:8000/docs`.
@@ -113,18 +113,74 @@ Each order should contain:
 - **GET `/customers/{id}`**: Retrieve a customer by ID.
 - **PUT `/customers/{id}`**: Update a customer's information.
 - **DELETE `/customers/{id}`**: Delete a customer.
+- **GET `/customers/`**: List customers with optional filters.
 
 ### Items
 - **POST `/items/`**: Add a new item.
 - **GET `/items/{id}`**: Retrieve an item by ID.
 - **PUT `/items/{id}`**: Update an item's details.
 - **DELETE `/items/{id}`**: Delete an item.
+- **GET `/items/`**: List items with optional filters.
 
 ### Orders
 - **POST `/orders/`**: Add a new order.
 - **GET `/orders/{id}`**: Retrieve an order by ID.
 - **PUT `/orders/{id}`**: Update an order's details.
 - **DELETE `/orders/{id}`**: Delete an order.
+- **GET `/orders/`**: List orders with optional filters.
+
+---
+
+## List View and Filters
+
+This project implements:
+
+### **Limited List View**
+All collections (`customers`, `items`, `orders`) support limiting the number of results returned using the `limit` query parameter. The default limit is `10` if not specified.
+
+#### Examples:
+- List a maximum of 5 customers:
+  ```
+  GET /customers/?limit=5
+  ```
+- List a maximum of 3 items:
+  ```
+  GET /items/?limit=3
+  ```
+- List a maximum of 7 orders:
+  ```
+  GET /orders/?limit=7
+  ```
+
+### **Filter Parameters**
+
+Each collection supports logical filters:
+
+#### **Customers**:
+- Filter by name (partial match):
+  ```
+  GET /customers/?name=John
+  ```
+
+#### **Items**:
+- Filter by price range:
+  ```
+  GET /items/?min_price=10&max_price=20
+  ```
+- Filter by minimum price only:
+  ```
+  GET /items/?min_price=15
+  ```
+- Filter by maximum price only:
+  ```
+  GET /items/?max_price=25
+  ```
+
+#### **Orders**:
+- Filter by customer ID:
+  ```
+  GET /orders/?customer_id=2
+  ```
 
 ---
 
